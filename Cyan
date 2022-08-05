@@ -8,19 +8,19 @@ proxies:
   -
     name: Traffic: 119 GB | 300 GB
     type: trojan
-    server: 127.0.0.1
+    server: 1.baidu.com
     port: 1080
     password: 123456
-    sni: baidu.com
+    sni: 1.baidu.com
     skip-cert-verify: false
     udp: true
   -
     name: Expire: 2022-09-15
     type: trojan
-    server: 127.0.0.1
+    server: 2.baidu.com
     port: 1080
     password: 123456
-    sni: baidu.com
+    sni: 2.baidu.com
     skip-cert-verify: false
     udp: true
   -
