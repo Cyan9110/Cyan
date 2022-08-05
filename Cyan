@@ -6,6 +6,24 @@ log-level: info
 external-controller: :9090
 proxies:
   -
+    name: Traffic: 119 GB | 300 GB
+    type: trojan
+    server: 127.0.0.1
+    port: 1080
+    password: 123456
+    sni: baidu.com
+    skip-cert-verify: false
+    udp: true
+  -
+    name: Expire: 2022-09-15
+    type: trojan
+    server: 127.0.0.1
+    port: 1080
+    password: 123456
+    sni: baidu.com
+    skip-cert-verify: false
+    udp: true
+  -
     name: 香港1
     type: trojan
     server: v26-web.douyinvod.com.enjoenjoenjo111.xyz
