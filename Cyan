@@ -1,18 +1,81 @@
-  - 
-    {name: 香港1, server: v26-web.douyinvod.com.enjoenjoenjo111.xyz, port: 20308, type: trojan, password: b86bd296-489a-3fc5-87b4-d52f86264431, sni: pkg.biligame.info, skip-cert-verify: false, udp: true}
-  - 
-    {name: 香港2, server: v26-web.douyinvod.com.enjoenjoenjo111.xyz, port: 20309, type: trojan, password: b86bd296-489a-3fc5-87b4-d52f86264431, sni: pkg.biligame.info, skip-cert-verify: false, udp: true}
-  - 
-    {name: 香港3, server: v26-web.douyinvod.com.enjoenjoenjo111.xyz, port: 20176, type: trojan, password: b86bd296-489a-3fc5-87b4-d52f86264431, sni: pkg.biligame.info, skip-cert-verify: false, udp: true}
-  - 
-    {name: 香港4, server: v26-web.douyinvod.com.enjoenjoenjo111.xyz, port: 20241, type: trojan, password: b86bd296-489a-3fc5-87b4-d52f86264431, sni: pkg.biligame.info, skip-cert-verify: false, udp: true}
-  - 
-    {name: 香港5, server: v26-web.douyinvod.com.enjoenjoenjo111.xyz, port: 20473, type: trojan, password: b86bd296-489a-3fc5-87b4-d52f86264431, sni: pkg.biligame.info, skip-cert-verify: false, udp: true}
-  - 
-    {name: 新加坡1, server: 2235f8.v.smtcdns.net.enjoenjoenjo111.xyz, port: 20453, type: trojan, password: b86bd296-489a-3fc5-87b4-d52f86264431, sni: pkg.biligame.info, skip-cert-verify: false, udp: true}
-  - 
-    {name: 新加坡2, server: 2235f8.v.smtcdns.net.enjoenjoenjo111.xyz, port: 20454, type: trojan, password: b86bd296-489a-3fc5-87b4-d52f86264431, sni: pkg.biligame.info, skip-cert-verify: false, udp: true}
-  - 
-    {name: 美国1, server: 2235f8.v.smtcdns.net.enjoenjoenjo111.xyz, port: 20251, type: trojan, password: b86bd296-489a-3fc5-87b4-d52f86264431, sni: 140-238-31-92.nhost.00cdn.com, skip-cert-verify: false, udp: true}
-  - 
-    {name: 美国2, server: 2235f8.v.smtcdns.net.enjoenjoenjo111.xyz, port: 20269, type: trojan, password: b86bd296-489a-3fc5-87b4-d52f86264431, sni: 140-238-31-92.nhost.00cdn.com, skip-cert-verify: false, udp: true}
+  -
+    name: 香港1
+    type: trojan
+    server: v26-web.douyinvod.com.enjoenjoenjo111.xyz
+    port: 20308
+    password: b86bd296-489a-3fc5-87b4-d52f86264431
+    sni: pkg.biligame.info
+    skip-cert-verify: false
+    udp: true
+  -
+    name: 香港2
+    type: trojan
+    server: v26-web.douyinvod.com.enjoenjoenjo111.xyz
+    port: 20309
+    password: b86bd296-489a-3fc5-87b4-d52f86264431
+    sni: pkg.biligame.info
+    skip-cert-verify: false
+    udp: true
+  -
+    name: 香港3
+    type: trojan
+    server: v26-web.douyinvod.com.enjoenjoenjo111.xyz
+    port: 20176
+    password: b86bd296-489a-3fc5-87b4-d52f86264431
+    sni: pkg.biligame.info
+    skip-cert-verify: false
+    udp: true
+  -
+    name: 香港4
+    type: trojan
+    server: v26-web.douyinvod.com.enjoenjoenjo111.xyz
+    port: 20241
+    password: b86bd296-489a-3fc5-87b4-d52f86264431
+    sni: pkg.biligame.info
+    skip-cert-verify: false
+    udp: true
+  -
+    name: 香港5
+    type: trojan
+    server: v26-web.douyinvod.com.enjoenjoenjo111.xyz
+    port: 20473
+    password: b86bd296-489a-3fc5-87b4-d52f86264431
+    sni: pkg.biligame.info
+    skip-cert-verify: false
+    udp: true
+  -
+    name: 新加坡1
+    type: trojan
+    server: 2235f8.v.smtcdns.net.enjoenjoenjo111.xyz
+    port: 20453
+    password: b86bd296-489a-3fc5-87b4-d52f86264431
+    sni: pkg.biligame.info
+    skip-cert-verify: false
+    udp: true
+  -
+    name: 新加坡2
+    type: trojan
+    server: 2235f8.v.smtcdns.net.enjoenjoenjo111.xyz
+    port: 20454
+    password: b86bd296-489a-3fc5-87b4-d52f86264431
+    sni: pkg.biligame.info
+    skip-cert-verify: false
+    udp: true
+  -
+    name: 美国1
+    type: trojan
+    server: 2235f8.v.smtcdns.net.enjoenjoenjo111.xyz
+    port: 20251
+    password: b86bd296-489a-3fc5-87b4-d52f86264431
+    sni: 140-238-31-92.nhost.00cdn.com
+    skip-cert-verify: false
+    udp: true
+  -
+    name: 美国2
+    type: trojan
+    server: 2235f8.v.smtcdns.net.enjoenjoenjo111.xyz
+    port: 20269
+    password: b86bd296-489a-3fc5-87b4-d52f86264431
+    sni: 140-238-31-92.nhost.00cdn.com
+    skip-cert-verify: false
+    udp: true
