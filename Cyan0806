@@ -6,7 +6,7 @@ log-level: info
 external-controller: :9090
 proxies:
   - {name: 香港1, type: trojan, server: iplchk1.bitznet.cloud, port: 34443, password: a4d156a9-f2a2-4f94-9357-13eb8c09be19, udp: true, sni: cert.bitbyte.one}
-  - {name: 香港2, type: trojan, server: iplchk3.bitznet.cloud, port: 34000, password: a4d156a9-f2a2-4f94-9357-13eb8c09be19, udp: true, sni: cert.bitbyte.one}
+  - {name: 香港2, type: trojan, server: iplchk3.bitznet.cloud, port: 34000, password: b2aa7df8-23cf-4ae3-8046-fbd90c4aa226, udp: true, sni: cert.bitbyte.one}
   - {name: 新加坡1, type: trojan, server: iplcsg1.bitznet.cloud, port: 34006, password: b2aa7df8-23cf-4ae3-8046-fbd90c4aa226, udp: true, sni: cert.bitbyte.one}
   - {name: 新加坡2, type: trojan, server: trasg1.bitznet.cloud, port: 32007, password: b2aa7df8-23cf-4ae3-8046-fbd90c4aa226, udp: true, sni: cert.bitbyte.one}
   - {name: 日本1, type: trojan, server: iplcjp1.bitznet.cloud, port: 34004, password: b2aa7df8-23cf-4ae3-8046-fbd90c4aa226, udp: true, sni: cert.bitbyte.one}
