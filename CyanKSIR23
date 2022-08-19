@@ -5,13 +5,13 @@ mode: Rule
 log-level: info
 external-controller: :9090
 proxies:
-  - {name: 香港1 | NF, server: yeadiald.ggjklc.xyz, port: 12007, type: vmess, uuid: 7c1a6f98-96e1-34e8-984f-1e1137b60648, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
-  - {name: 香港2 | NF, server: yeadiald.ggjklc.xyz, port: 12007, type: vmess, uuid: 7c1a6f98-96e1-34e8-984f-1e1137b60648, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
-  - {name: 新加坡1 | NF, server: yeadiald.ggjklc.xyz, port: 12007, type: vmess, uuid: 7c1a6f98-96e1-34e8-984f-1e1137b60648, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
-  - {name: 新加坡2 | NF, server: yeadiald.ggjklc.xyz, port: 12007, type: vmess, uuid: 7c1a6f98-96e1-34e8-984f-1e1137b60648, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
-  - {name: 日本1 | NF, server: yeadiald.ggjklc.xyz, port: 12007, type: vmess, uuid: 7c1a6f98-96e1-34e8-984f-1e1137b60648, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
-  - {name: 日本2 | NF, server: yeadiald.ggjklc.xyz, port: 12007, type: vmess, uuid: 7c1a6f98-96e1-34e8-984f-1e1137b60648, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
-  - {name: 美国1 | NF, server: yeadiald.ggjklc.xyz, port: 12007, type: vmess, uuid: 7c1a6f98-96e1-34e8-984f-1e1137b60648, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
-  - {name: 美国2 | NF, server: yeadiald.ggjklc.xyz, port: 12007, type: vmess, uuid: 7c1a6f98-96e1-34e8-984f-1e1137b60648, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
+  - {name: 香港1 | NF, server: yeadiald.ggjklc.xyz, port: 12021, type: vmess, uuid: 7c1a6f98-96e1-34e8-984f-1e1137b60648, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
+  - {name: 香港2 | NF, server: yeadiald.ggjklc.xyz, port: 12021, type: vmess, uuid: 7c1a6f98-96e1-34e8-984f-1e1137b60648, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
+  - {name: 新加坡1 | NF, server: yeadiald.ggjklc.xyz, port: 12021, type: vmess, uuid: 7c1a6f98-96e1-34e8-984f-1e1137b60648, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
+  - {name: 新加坡2 | NF, server: yeadiald.ggjklc.xyz, port: 12021, type: vmess, uuid: 7c1a6f98-96e1-34e8-984f-1e1137b60648, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
+  - {name: 日本1 | NF, server: yeadiald.ggjklc.xyz, port: 12021, type: vmess, uuid: 7c1a6f98-96e1-34e8-984f-1e1137b60648, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
+  - {name: 日本2 | NF, server: yeadiald.ggjklc.xyz, port: 12021, type: vmess, uuid: 7c1a6f98-96e1-34e8-984f-1e1137b60648, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
+  - {name: 美国1 | NF, server: yeadiald.ggjklc.xyz, port: 12021, type: vmess, uuid: 7c1a6f98-96e1-34e8-984f-1e1137b60648, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
+  - {name: 美国2 | NF, server: yeadiald.ggjklc.xyz, port: 12021, type: vmess, uuid: 7c1a6f98-96e1-34e8-984f-1e1137b60648, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
   - {name: 香港 | 备用, server: cos-ap-guangzhou.westdatacloud.top, port: 20001, type: trojan, password: 061F9940-C72C-6E81-B1FD-97B5F3FA7028, sni: v1.kwaicdn.com, skip-cert-verify: true, udp: true}
   - {name: 新加坡 | 备用, server: cos-ap-guangzhou.westdatacloud.top, port: 20021, type: trojan, password: 061F9940-C72C-6E81-B1FD-97B5F3FA7028, sni: v1.kwaicdn.com, skip-cert-verify: true, udp: true}
