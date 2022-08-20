@@ -13,5 +13,5 @@ proxies:
   - {name: 日本2 | NF, type: trojan, server: trajp1.bitznet.cloud, port: 32004, password: e43f8525-8d46-4209-8140-220416309831, udp: true, sni: cert.bitbyte.one}
   - {name: 美国1 | NF, type: trojan, server: iplcus1.bitznet.cloud, port: 34001, password: e43f8525-8d46-4209-8140-220416309831, udp: true, sni: cert.bitbyte.one}
   - {name: 美国2 | NF, type: trojan, server: traus1.bitznet.cloud, port: 32001, password: e43f8525-8d46-4209-8140-220416309831, udp: true, sni: cert.bitbyte.one}
-  - {name: 香港 | 备用, server: cos-ap-guangzhou.westdatacloud.top, port: 20001, type: trojan, password: 061F9940-C72C-6E81-B1FD-97B5F3FA7028, sni: v1.kwaicdn.com, skip-cert-verify: true, udp: true}
-  - {name: 新加坡 | 备用, server: cos-ap-guangzhou.westdatacloud.top, port: 20021, type: trojan, password: 061F9940-C72C-6E81-B1FD-97B5F3FA7028, sni: v1.kwaicdn.com, skip-cert-verify: true, udp: true}
+  - {name: 香港 | 备用, server: cos-ap-guangzhou.westdatacloud.top, port: 20001, type: trojan, password: ED8FE2B8-A965-8D46-4821-A8A2AD022B54, sni: v1.kwaicdn.com, skip-cert-verify: true, udp: true}
+  - {name: 新加坡 | 备用, server: cos-ap-guangzhou.westdatacloud.top, port: 20021, type: trojan, password: ED8FE2B8-A965-8D46-4821-A8A2AD022B54, sni: v1.kwaicdn.com, skip-cert-verify: true, udp: true}
