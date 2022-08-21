@@ -1,3 +1,4 @@
+proxies:
   - {name: 香港1 | NF, type: trojan, server: iplchk1.bitznet.one, port: 34443, password: e43f8525-8d46-4209-8140-220416309831, udp: true, sni: cert.bitbyte.one}
   - {name: 香港2 | NF, type: trojan, server: iplchk3.bitznet.one, port: 34000, password: e43f8525-8d46-4209-8140-220416309831, udp: true, sni: cert.bitbyte.one}
   - {name: 新加坡1 | NF, type: trojan, server: iplcsg1.bitznet.one, port: 34006, password: e43f8525-8d46-4209-8140-220416309831, udp: true, sni: cert.bitbyte.one}
