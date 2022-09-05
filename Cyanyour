@@ -8,4 +8,4 @@ proxies:
   - {name: 美国1 | NF, type: trojan, server: iplcus1.bitznet.one, port: 34001, password: e43f8525-8d46-4209-8140-220416309831, udp: true, sni: cert.bitbyte.one}
   - {name: 美国2 | NF, type: trojan, server: traus1.bitznet.one, port: 32001, password: e43f8525-8d46-4209-8140-220416309831, udp: true, sni: cert.bitbyte.one}
   - {name: 香港 | 备用, server: yeadiald.ggjklc.xyz, port: 12230, type: vmess, uuid: 58cdda16-9a81-345c-905d-d266c8971775, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
-  - {name: 新加坡 | 备用, server: subith.kkmbnbg.xyz, port: 12013, type: vmess, uuid: 58cdda16-9a81-345c-905d-d266c8971775, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
+  - {name: 新加坡 | 备用, server: yeadiald.ggjklc.xyz, port: 12005, type: vmess, uuid: 58cdda16-9a81-345c-905d-d266c8971775, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
