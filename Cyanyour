@@ -5,4 +5,3 @@ proxies:
   - {name: 新加坡2 | NF, server: subith.kkmbnbg.xyz, port: 21568, type: vmess, uuid: 58cdda16-9a81-345c-905d-d266c8971775, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
   - {name: 美国1 | NF, server: subith.kkmbnbg.xyz, port: 12002, type: vmess, uuid: 58cdda16-9a81-345c-905d-d266c8971775, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
   - {name: 美国2 | NF, server: subith.kkmbnbg.xyz, port: 12008, type: vmess, uuid: 58cdda16-9a81-345c-905d-d266c8971775, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
-  - {name: 备用 | NF, server: subith.kkmbnbg.xyz, port: 12008, type: vmess, uuid: 58cdda16-9a81-345c-905d-d266c8971775, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
