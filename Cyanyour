@@ -1,7 +1,7 @@
 proxies:
-  - {name: 香港1 | NF, server: sgiepl.omm556.xyz, port: 63401, type: vmess, uuid: 22fccefa-f820-36b5-863b-01e451b99e7a, servername: sgqqgo2.omm556.xyz ,alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
-  - {name: 香港2 | NF, server: sgiepl.omm556.xyz, port: 63401, type: vmess, uuid: 22fccefa-f820-36b5-863b-01e451b99e7a , servername: sgqqgo2.omm556.xyz , alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
-  - {name: 新加坡1 | NF, server: sgiepl.omm556.xyz, port: 63401, type: vmess, uuid: 22fccefa-f820-36b5-863b-01e451b99e7a, servername: sgqqgo2.omm556.xyz ,alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
-  - {name: 新加坡2 | NF, server: sgiepl.omm556.xyz, port: 63401, type: vmess, uuid: 22fccefa-f820-36b5-863b-01e451b99e7a, servername: sgqqgo2.omm556.xyz ,alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
-  - {name: 美国1 | NF, server: 36.137.191.123, port: 19986, type: vmess, uuid: 22fccefa-f820-36b5-863b-01e451b99e7a, servername: yujp2.omm556.xyz ,alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
-  - {name: 美国2 | NF, server: 36.137.191.123, port: 19986, type: vmess, uuid: 22fccefa-f820-36b5-863b-01e451b99e7a, servername: yujp2.omm556.xyz ,alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
+  - {name: 香港1 | NF, server: 120.197.129.50, port: 48343, type: vmess, uuid: 22fccefa-f820-36b5-863b-01e451b99e7a, alterId: 0, cipher: auto, tls: true, skip-cert-verify: false, servername: hkpro3.omm556.xyz, udp: true}
+  - {name: 香港2 | NF, server: hkpro2.omm556.xyz, port: 17755, type: vmess, uuid: 22fccefa-f820-36b5-863b-01e451b99e7a, alterId: 0, cipher: auto, tls: true, skip-cert-verify: false, servername: hkpro2.omm556.xyz, udp: true}
+  - {name: 新加坡1 | NF, sgiepl.omm556.xyz, port: 63401, type: vmess, uuid: 22fccefa-f820-36b5-863b-01e451b99e7a, alterId: 0, cipher: auto, tls: true, skip-cert-verify: false, servername: sgqqgo2.omm556.xyz, udp: true}
+  - {name: 新加坡2 | NF, sgiepl.omm556.xyz, port: 63401, type: vmess, uuid: 22fccefa-f820-36b5-863b-01e451b99e7a, alterId: 0, cipher: auto, tls: true, skip-cert-verify: false, servername: sgqqgo2.omm556.xyz, udp: true}
+  - {name: 美国1 | NF, server: sjsgood.omm556.xyz, port: 10985, type: vmess, uuid: 22fccefa-f820-36b5-863b-01e451b99e7a, alterId: 0, cipher: auto, tls: true, skip-cert-verify: false, servername: sjsgood.omm556.xyz, udp: true}
+  - {name: 美国2 | NF, server: sjsgood.omm556.xyz, port: 10986, type: vmess, uuid: 22fccefa-f820-36b5-863b-01e451b99e7a, alterId: 0, cipher: auto, tls: true, skip-cert-verify: false, servername: sjsgood.omm556.xyz, udp: true}
