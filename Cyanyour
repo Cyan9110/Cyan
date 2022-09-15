@@ -1,4 +1,2 @@
 proxies:
-  - {name: 香港1 | NF, server: 58.215.126.175, port: 32443, type: trojan, password: cc8cf6c3-3072-46d3-b6c7-1cc53078dddd, sni: cert.bitbyte.one, skip-cert-verify: false, udp: true}
-  - {name: 新加坡1 | NF, server: 58.215.126.158, port: 32007, type: trojan, password: cc8cf6c3-3072-46d3-b6c7-1cc53078dddd, sni: cert.bitbyte.one, skip-cert-verify: false, udp: true}
-  - {name: 美国1 | NF, server: 58.215.126.170, port: 32001, type: trojan, password: cc8cf6c3-3072-46d3-b6c7-1cc53078dddd, sni: cert.bitbyte.one, skip-cert-verify: false, udp: true}
+  - {name: 您的订阅已到期，请及时续费, type: trojan, server: 1.1.1.1, port: 65535, password: 1, sni: 1}
