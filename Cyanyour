@@ -1,2 +1,2 @@
 proxies:
-  - {name: 您的订阅已到期，请及时续费, type: trojan, server: 1.1.1.1, port: 65535, password: 1, sni: 1}
+  - {name: 您的订阅已过期, type: trojan, server: 1.1.1.1, port: 65535, password: 1, sni: 1}
