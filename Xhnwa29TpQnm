@@ -1,6 +1,6 @@
 proxies:
-  - {name: 香港1 | NF, server: trahk1.bitznet.one, port: 32443, type: trojan, password: cc8cf6c3-3072-46d3-b6c7-1cc53078dddd, sni: cert.bitbyte.one, skip-cert-verify: false, udp: true}
-  - {name: 香港2 | NF, server: trahk5.bitznet.one, port: 32000, type: trojan, password: cc8cf6c3-3072-46d3-b6c7-1cc53078dddd, sni: cert.bitbyte.one, skip-cert-verify: false, udp: true}
-  - {name: 新加坡1 | NF, server: trasg1.bitznet.one, port: 32007, type: trojan, password: cc8cf6c3-3072-46d3-b6c7-1cc53078dddd, sni: cert.bitbyte.one, skip-cert-verify: false, udp: true}
-  - {name: 美国1 | NF, server: traus1.bitznet.one, port: 32001, type: trojan, password: cc8cf6c3-3072-46d3-b6c7-1cc53078dddd, sni: cert.bitbyte.one, skip-cert-verify: false, udp: true}
-  - {name: 日本1 | NF, server: trajp1.bitznet.one, port: 32004, type: trojan, password: cc8cf6c3-3072-46d3-b6c7-1cc53078dddd, sni: cert.bitbyte.one, skip-cert-verify: false, udp: true}
+  - {name: 香港1 | NF, server: trahk1.bitznet.one, port: 32443, type: trojan, password: 1c35a5c6-454e-427e-9a40-c61031e319b6, sni: cert.bitbyte.one, skip-cert-verify: false, udp: true}
+  - {name: 香港2 | NF, server: trahk5.bitznet.one, port: 32000, type: trojan, password: 1c35a5c6-454e-427e-9a40-c61031e319b6, sni: cert.bitbyte.one, skip-cert-verify: false, udp: true}
+  - {name: 新加坡1 | NF, server: trasg1.bitznet.one, port: 32007, type: trojan, password: 1c35a5c6-454e-427e-9a40-c61031e319b6, sni: cert.bitbyte.one, skip-cert-verify: false, udp: true}
+  - {name: 美国1 | NF, server: traus1.bitznet.one, port: 32001, type: trojan, password: 1c35a5c6-454e-427e-9a40-c61031e319b6, sni: cert.bitbyte.one, skip-cert-verify: false, udp: true}
+  - {name: 日本1 | NF, server: trajp1.bitznet.one, port: 32004, type: trojan, password: 1c35a5c6-454e-427e-9a40-c61031e319b6, sni: cert.bitbyte.one, skip-cert-verify: false, udp: true}
