@@ -1,2 +1,0 @@
-proxies:
-  - {name:您的订阅已过期, type:trojan, server:1.1.1.1, port:65535, password:QyVDQIm4AJTO, sni:1}
