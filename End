@@ -1,2 +1,3 @@
 proxies:
-  - {"server":"1.2.3.4","port":10000,"password":"c61031e319b6","tls":true,"sni":"google.com","skip-cert-verify":false,"tfo":true,"udp":true,"name":"该订阅已到期","type":"trojan"}
+  - {"server":"google.com","port":10000,"password":"c61031e319b6","tls":true,"sni":"google.com","skip-cert-verify":false,"tfo":true,"udp":true,"name":"该订阅已到期","type":"trojan"}
+  - {"server":"google.com","port":10000,"password":"c61031e319b6","tls":true,"sni":"google.com","skip-cert-verify":false,"tfo":true,"udp":true,"name":"请及时续费","type":"trojan"}
