@@ -1,3 +1,3 @@
 proxies:
-  - {"server":"google.com","port":10010,"password":"c61031e319b6","tls":true,"sni":"google.com","skip-cert-verify":false,"tfo":true,"udp":true,"name":"该订阅已到期","type":"trojan"}
-  - {"server":"google.com","port":20020,"password":"c61031e319b6","tls":true,"sni":"google.com","skip-cert-verify":false,"tfo":true,"udp":true,"name":"请及时续费","type":"trojan"}
+  - {"server":"ip1.google.one","port":10010,"password":"c61031e319b6","tls":true,"sni":"cert.google.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"该订阅已到期","type":"trojan"}
+  - {"server":"ip2.google.one","port":20020,"password":"c61031e319b6","tls":true,"sni":"cert.google.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"请及时续费","type":"trojan"}
