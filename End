@@ -1,7 +1,7 @@
 proxies:
-  - {"server":"trahk1.google.com","port":32443,"password":"ZJ8uOPPXl6L8MQEt","tls":true,"sni":"cert.google.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇭🇰 香港1 | 已过期，VX：h641330010","type":"trojan"}
-  - {"server":"trahk5.google.com","port":32000,"password":"ZJ8uOPPXl6L8MQEt","tls":true,"sni":"cert.google.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇭🇰 香港2 | 已过期，VX：h641330010","type":"trojan"}
-  - {"server":"traus1.google.com","port":32001,"password":"ZJ8uOPPXl6L8MQEt","tls":true,"sni":"cert.google.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇺🇸 美国1 | 已过期，VX：h641330010","type":"trojan"}
-  - {"server":"dtus1.google.com","port":33001,"password":"ZJ8uOPPXl6L8MQEt","tls":true,"sni":"cert.google.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇺🇸 美国2 | 已过期，VX：h641330010","type":"trojan"}
-  - {"server":"trajp1.google.com","port":32004,"password":"ZJ8uOPPXl6L8MQEt","tls":true,"sni":"cert.google.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇯🇵 日本 | 已过期，VX：h641330010","type":"trojan"}
-  - {"server":"trasg1.google.com","port":32007,"password":"ZJ8uOPPXl6L8MQEt","tls":true,"sni":"cert.google.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇸🇬 新加坡 | 已过期，VX：h641330010","type":"trojan"}
+  - {"server":"trahk1.google.com","port":32443,"password":"ZJ8uOPPXl6L8MQEt","tls":true,"sni":"cert.google.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"香港1 | 请及时续费","type":"trojan"}
+  - {"server":"trahk5.google.com","port":32000,"password":"ZJ8uOPPXl6L8MQEt","tls":true,"sni":"cert.google.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"香港2 | 请及时续费","type":"trojan"}
+  - {"server":"traus1.google.com","port":32001,"password":"ZJ8uOPPXl6L8MQEt","tls":true,"sni":"cert.google.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"美国1 | 请及时续费","type":"trojan"}
+  - {"server":"dtus1.google.com","port":33001,"password":"ZJ8uOPPXl6L8MQEt","tls":true,"sni":"cert.google.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"美国2 | 请及时续费","type":"trojan"}
+  - {"server":"trajp1.google.com","port":32004,"password":"ZJ8uOPPXl6L8MQEt","tls":true,"sni":"cert.google.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"日本 | 请及时续费","type":"trojan"}
+  - {"server":"trasg1.google.com","port":32007,"password":"ZJ8uOPPXl6L8MQEt","tls":true,"sni":"cert.google.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"新加坡 | 请及时续费","type":"trojan"}
