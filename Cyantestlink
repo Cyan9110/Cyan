@@ -1,17 +1,15 @@
 proxies:
-    - { name: '🇭🇰 香港-深度访问 DP', type: trojan, server: iplchk1.bnnodeservice.com, port: 34443, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
-    - { name: '🇭🇰 香港-深度访问 HKT', type: trojan, server: iplchk3.bnnodeservice.com, port: 34000, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
-    - { name: '🇭🇰 香港-核心访问 DP', type: trojan, server: trahk1.bnnodeservice.com, port: 32443, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
-    - { name: '🇭🇰 香港-核心访问 HKT', type: trojan, server: trahk5.bnnodeservice.com, port: 32000, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
-    - { name: '🇺🇸 美国-深度访问 DP', type: trojan, server: iplcus1.bnnodeservice.com, port: 34001, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
-    - { name: '🇺🇸 美国-核心访问 DP', type: trojan, server: traus1.bnnodeservice.com, port: 32001, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
-    - { name: '🇺🇸 美国-边缘访问 DP', type: trojan, server: dtus1.bnnodeservice.com, port: 33001, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
-    - { name: '🇹🇼 台湾-深度访问 BGP', type: trojan, server: iplctw1.bnnodeservice.com, port: 34003, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
-    - { name: '🇹🇼 台湾-核心访问 BGP', type: trojan, server: tratw1.bnnodeservice.com, port: 32003, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
-    - { name: '🇹🇼 台湾-边缘访问 BGP', type: trojan, server: dttw1.bnnodeservice.com, port: 33003, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
-    - { name: '🇯🇵 日本-深度访问 DP', type: trojan, server: iplcjp1.bnnodeservice.com, port: 34004, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
-    - { name: '🇯🇵 日本-核心访问 DP', type: trojan, server: trajp1.bnnodeservice.com, port: 32004, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
-    - { name: '🇰🇷 韩国-深度访问 VUKR', type: trojan, server: iplcsk1.bnnodeservice.com, port: 34005, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
-    - { name: '🇰🇷 韩国-核心访问 VUKR', type: trojan, server: trask1.bnnodeservice.com, port: 32005, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
-    - { name: '🇸🇬 新加坡-深度访问 DP', type: trojan, server: iplcsg1.bnnodeservice.com, port: 34006, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
-    - { name: '🇸🇬 新加坡-核心访问 DP', type: trojan, server: trasg1.bnnodeservice.com, port: 32007, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
+    - { name: '香港-深度访问 DP', type: trojan, server: iplchk1.bnnodeservice.com, port: 34443, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
+    - { name: '香港-深度访问 HKT', type: trojan, server: iplchk3.bnnodeservice.com, port: 34000, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
+    - { name: '香港-核心访问 DP', type: trojan, server: trahk1.bnnodeservice.com, port: 32443, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
+    - { name: '香港-核心访问 HKT', type: trojan, server: trahk5.bnnodeservice.com, port: 32000, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
+    - { name: '美国-深度访问 DP', type: trojan, server: iplcus1.bnnodeservice.com, port: 34001, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
+    - { name: '美国-核心访问 DP', type: trojan, server: traus1.bnnodeservice.com, port: 32001, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
+    - { name: '台湾-深度访问 BGP', type: trojan, server: iplctw1.bnnodeservice.com, port: 34003, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
+    - { name: '台湾-核心访问 BGP', type: trojan, server: tratw1.bnnodeservice.com, port: 32003, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
+    - { name: '日本-深度访问 DP', type: trojan, server: iplcjp1.bnnodeservice.com, port: 34004, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
+    - { name: '日本-核心访问 DP', type: trojan, server: trajp1.bnnodeservice.com, port: 32004, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
+    - { name: '韩国-深度访问 VUKR', type: trojan, server: iplcsk1.bnnodeservice.com, port: 34005, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
+    - { name: '韩国-核心访问 VUKR', type: trojan, server: trask1.bnnodeservice.com, port: 32005, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
+    - { name: '新加坡-深度访问 DP', type: trojan, server: iplcsg1.bnnodeservice.com, port: 34006, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
+    - { name: '新加坡-核心访问 DP', type: trojan, server: trasg1.bnnodeservice.com, port: 32007, password: db80a1cf-8cac-4ecb-aefa-83530cd34ae2, udp: true, sni: cert.bitbyte.one }
