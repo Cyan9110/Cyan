@@ -1,3 +1,3 @@
 proxies:
-    - { name: '使用已到期，请及时联系h641330010续费', type: trojan, server: ip1.google.com, port: 34443, password: aefa-83530cd34ae2, udp: true }
-    - { name: '使用已到期，请及时联系h641330010续费', type: trojan, server: ip3.google.com, port: 34000, password: aefa-83530cd34ae2, udp: true }
+    - { name: '请及时联系h641330010续费', type: trojan, server: ip1.google.com, port: 34443, password: aefa-83530cd34ae2, udp: true }
+    - { name: '请及时联系h641330010续费', type: trojan, server: ip3.google.com, port: 34000, password: aefa-83530cd34ae2, udp: true }
