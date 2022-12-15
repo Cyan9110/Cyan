@@ -1,3 +1,7 @@
 proxies:
-    - { name: '请及时联系h641330010续费', type: trojan, server: ip1.google.com, port: 34443, password: aefa-83530cd34ae2, udp: true, sni: cert.google.one }
-    - { name: '香港', type: trojan, server: ip3.google.com, port: 34000, password: aefa-83530cd34ae2, udp: true, sni: cert.google.one }
+  - {"server":"trahk1.google.com","port":32443,"password":"ZJ8uOPPXl6L8MQEt","tls":true,"sni":"cert.google.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇭🇰 香港1 | 已过期，续费请联系：h641330010","type":"trojan"}
+  - {"server":"trahk5.google.com","port":32000,"password":"ZJ8uOPPXl6L8MQEt","tls":true,"sni":"cert.google.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇭🇰 香港2 | 已过期，续费请联系：h641330010","type":"trojan"}
+  - {"server":"traus1.google.com","port":32001,"password":"ZJ8uOPPXl6L8MQEt","tls":true,"sni":"cert.google.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇺🇸 美国1 | 已过期，续费请联系：h641330010","type":"trojan"}
+  - {"server":"dtus1.google.com","port":33001,"password":"ZJ8uOPPXl6L8MQEt","tls":true,"sni":"cert.google.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇺🇸 美国2 | 已过期，续费请联系：h641330010","type":"trojan"}
+  - {"server":"trajp1.google.com","port":32004,"password":"ZJ8uOPPXl6L8MQEt","tls":true,"sni":"cert.google.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇯🇵 日本 | 已过期，续费请联系：h641330010","type":"trojan"}
+  - {"server":"trasg1.google.com","port":32007,"password":"ZJ8uOPPXl6L8MQEt","tls":true,"sni":"cert.google.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇸🇬 新加坡 | 已过期，续费请联系：h641330010","type":"trojan"}
