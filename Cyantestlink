@@ -1,8 +1,8 @@
 proxies:
-    - { name: '香港 DP', type: trojan, server: iplchk1.bnnodeservice.com, port: 34443, password: 0dcadafe-a1d7-4281-8eca-76388d6e1fe1, udp: true, sni: cert.bitbyte.one }
-    - { name: '香港 HKT', type: trojan, server: iplchk3.bnnodeservice.com, port: 34000, password: 0dcadafe-a1d7-4281-8eca-76388d6e1fe1, udp: true, sni: cert.bitbyte.one }
-    - { name: '美国 DP', type: trojan, server: iplcus1.bnnodeservice.com, port: 34001, password: 0dcadafe-a1d7-4281-8eca-76388d6e1fe1, udp: true, sni: cert.bitbyte.one }
-    - { name: '台湾 BGP', type: trojan, server: iplctw1.bnnodeservice.com, port: 34003, password: 0dcadafe-a1d7-4281-8eca-76388d6e1fe1, udp: true, sni: cert.bitbyte.one }
-    - { name: '日本 DP', type: trojan, server: iplcjp1.bnnodeservice.com, port: 34004, password: 0dcadafe-a1d7-4281-8eca-76388d6e1fe1, udp: true, sni: cert.bitbyte.one }
-    - { name: '韩国 VUKR', type: trojan, server: iplcsk1.bnnodeservice.com, port: 34005, password: 0dcadafe-a1d7-4281-8eca-76388d6e1fe1, udp: true, sni: cert.bitbyte.one }
-    - { name: '新加坡 DP', type: trojan, server: iplcsg1.bnnodeservice.com, port: 34006, password: 0dcadafe-a1d7-4281-8eca-76388d6e1fe1, udp: true, sni: cert.bitbyte.one }
+    - { name: '香港 DP', type: trojan, server: iplchk1.bnnodeservice.com, port: 34443, password: 27d11755-2a74-4160-913a-6039af7c81a4, udp: true, sni: cert.bitbyte.one }
+    - { name: '香港 HKT', type: trojan, server: iplchk3.bnnodeservice.com, port: 34000, password: 27d11755-2a74-4160-913a-6039af7c81a4, udp: true, sni: cert.bitbyte.one }
+    - { name: '美国 DP', type: trojan, server: iplcus1.bnnodeservice.com, port: 34001, password: 27d11755-2a74-4160-913a-6039af7c81a4, udp: true, sni: cert.bitbyte.one }
+    - { name: '台湾 BGP', type: trojan, server: iplctw1.bnnodeservice.com, port: 34003, password: 27d11755-2a74-4160-913a-6039af7c81a4, udp: true, sni: cert.bitbyte.one }
+    - { name: '日本 DP', type: trojan, server: iplcjp1.bnnodeservice.com, port: 34004, password: 27d11755-2a74-4160-913a-6039af7c81a4, udp: true, sni: cert.bitbyte.one }
+    - { name: '韩国 VUKR', type: trojan, server: iplcsk1.bnnodeservice.com, port: 34005, password: 27d11755-2a74-4160-913a-6039af7c81a4, udp: true, sni: cert.bitbyte.one }
+    - { name: '新加坡 DP', type: trojan, server: iplcsg1.bnnodeservice.com, port: 34006, password: 27d11755-2a74-4160-913a-6039af7c81a4, udp: true, sni: cert.bitbyte.one }
