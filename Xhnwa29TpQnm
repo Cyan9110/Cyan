@@ -6,4 +6,3 @@ proxies:
   - {"server":"trajp1.bnnodeservice.com","port":32004,"password":"eba93242-19bc-455f-b375-906349d226a0","tls":true,"sni":"cert.bitbyte.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇯🇵日本 | NF","type":"trojan"}
   - {"server":"trasg1.bnnodeservice.com","port":32007,"password":"eba93242-19bc-455f-b375-906349d226a0","tls":true,"sni":"cert.bitbyte.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇸🇬新加坡 | NF","type":"trojan"}
   - {"server":"trafr1.bnnodeservice.com","port":32009,"password":"eba93242-19bc-455f-b375-906349d226a0","tls":true,"sni":"cert.bitbyte.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇫🇷法国 | chatGPT","type":"trojan"}
-  
