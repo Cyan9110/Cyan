@@ -1,8 +1,0 @@
-proxies:
-  - {"server":"trahk1.bnnodeservice.com","port":32443,"password":"eba93242-19bc-455f-b375-906349d226a0","tls":true,"sni":"cert.bitbyte.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇭🇰香港1 | NF","type":"trojan"}
-  - {"server":"trahk5.bnnodeservice.com","port":32000,"password":"eba93242-19bc-455f-b375-906349d226a0","tls":true,"sni":"cert.bitbyte.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇭🇰香港2 | NF","type":"trojan"}
-  - {"server":"traus1.bnnodeservice.com","port":32001,"password":"eba93242-19bc-455f-b375-906349d226a0","tls":true,"sni":"cert.bitbyte.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇺🇸美国1 | NF","type":"trojan"}
-  - {"server":"dtus1.bnnodeservice.com","port":33001,"password":"eba93242-19bc-455f-b375-906349d226a0","tls":true,"sni":"cert.bitbyte.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇺🇸美国2 | NF","type":"trojan"}
-  - {"server":"trajp1.bnnodeservice.com","port":32004,"password":"eba93242-19bc-455f-b375-906349d226a0","tls":true,"sni":"cert.bitbyte.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇯🇵日本 | NF","type":"trojan"}
-  - {"server":"trasg1.bnnodeservice.com","port":32007,"password":"eba93242-19bc-455f-b375-906349d226a0","tls":true,"sni":"cert.bitbyte.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇸🇬新加坡 | NF","type":"trojan"}
-  - {"server":"tratw1.bnnodeservice.com","port":32003,"password":"eba93242-19bc-455f-b375-906349d226a0","tls":true,"sni":"cert.bitbyte.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇨🇳台湾 | chatGPT","type":"trojan"}
