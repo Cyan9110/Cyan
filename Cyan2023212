@@ -1,5 +1,5 @@
 proxies:
-  - { name: '🇭🇰香港临时 | NF', type: ss, server: ie.772xx.cn, port: 27701, cipher: chacha20-ietf-poly1305, password: 2cd01d28-d33f-46e7-b1e9-57f1a1a11839, udp: true 
+  - { name: '🇭🇰香港临时 | NF', type: ss, server: ie.772xx.cn, port: 27701, cipher: chacha20-ietf-poly1305, password: 2cd01d28-d33f-46e7-b1e9-57f1a1a11839, udp: true }
   - { name: '🇸🇬新加坡临时 | NF', type: ss, server: ie.772xx.cn, port: 27801, cipher: chacha20-ietf-poly1305, password: 2cd01d28-d33f-46e7-b1e9-57f1a1a11839, udp: true }
   - { name: '🇯🇵日本临时 | NF', type: ss, server: ie.772xx.cn, port: 27601, cipher: chacha20-ietf-poly1305, password: 2cd01d28-d33f-46e7-b1e9-57f1a1a11839, udp: true }
   - { name: '🇺🇸美国临时 | NF', type: ss, server: in.us.xfltd.top, port: 17501, cipher: chacha20-ietf-poly1305, password: 2cd01d28-d33f-46e7-b1e9-57f1a1a11839, udp: true }
