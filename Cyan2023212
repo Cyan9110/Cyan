@@ -1,7 +1,11 @@
 proxies:
   - {"server":"trahk1.bnnodeservice.com","port":32443,"password":"c76a5e09-8493-4cd5-9344-d2cfd17b438e","tls":true,"sni":"cert.bitbyte.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇭🇰香港1 | NF","type":"trojan"}
   - {"server":"trahk5.bnnodeservice.com","port":32000,"password":"c76a5e09-8493-4cd5-9344-d2cfd17b438e","tls":true,"sni":"cert.bitbyte.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇭🇰香港2 | NF","type":"trojan"}
+  - { name: 🇭🇰香港 | 应急, type: ss, server: shankh.xfltd.cc, port: 17111, cipher: chacha20-ietf-poly1305, password: ce0859c4-9aab-4cc7-8548-43f60bd68ca1, udp: true }
   - {"server":"traus1.bnnodeservice.com","port":32001,"password":"c76a5e09-8493-4cd5-9344-d2cfd17b438e","tls":true,"sni":"cert.bitbyte.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇺🇸美国1 | NF","type":"trojan"}
   - {"server":"dtus1.bnnodeservice.com","port":33001,"password":"c76a5e09-8493-4cd5-9344-d2cfd17b438e","tls":true,"sni":"cert.bitbyte.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇺🇸美国2 | NF","type":"trojan"}
+  - { name: 🇺🇸美国 | 应急, type: ss, server: in.us.xfltd.top, port: 17501, cipher: chacha20-ietf-poly1305, password: ce0859c4-9aab-4cc7-8548-43f60bd68ca1, udp: true }
   - {"server":"trajp1.bnnodeservice.com","port":32004,"password":"c76a5e09-8493-4cd5-9344-d2cfd17b438e","tls":true,"sni":"cert.bitbyte.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇯🇵日本 | NF","type":"trojan"}
+  - { name: 🇯🇵日本 | 应急, type: ss, server: cnuakpj.xfltd.cc, port: 17301, cipher: chacha20-ietf-poly1305, password: ce0859c4-9aab-4cc7-8548-43f60bd68ca1, udp: true }
   - {"server":"trasg1.bnnodeservice.com","port":32007,"password":"c76a5e09-8493-4cd5-9344-d2cfd17b438e","tls":true,"sni":"cert.bitbyte.one","skip-cert-verify":false,"tfo":true,"udp":true,"name":"🇸🇬新加坡 | NF","type":"trojan"}
+  - { name: 🇸🇬新加坡 | 应急, type: ss, server: oxaxcgs.xfltd.cc, port: 38401, cipher: chacha20-ietf-poly1305, password: ce0859c4-9aab-4cc7-8548-43f60bd68ca1, udp: true }
