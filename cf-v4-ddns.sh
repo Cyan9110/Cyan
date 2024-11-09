@@ -37,7 +37,7 @@ CFUSER=h641330010@gmail.com
 CFZONE_NAME=vc-net.cfd
 
 # Hostname to update, eg: homeserver.example.com
-CFRECORD_NAME=kr1
+CFRECORD_NAME=mlxy
 
 # Record type, A(IPv4)|AAAA(IPv6), default IPv4
 CFRECORD_TYPE=A
