@@ -34,7 +34,7 @@ CFKEY=87d23983f67c7e1a78d686ce3934bb3600a68
 CFUSER=h641330010@gmail.com
 
 # Zone name, eg: example.com
-CFZONE_NAME=vc-net.cfd
+CFZONE_NAME=vcweb.top
 
 # Hostname to update, eg: homeserver.example.com
 CFRECORD_NAME=mlxy
