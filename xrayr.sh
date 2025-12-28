@@ -6,8 +6,8 @@ plain='\033[0m'
 XRAYR_DIR="/etc/XrayR"
 SCREEN_SESSION="XrayR"
 ARCH="64"
-GUARD_FILE="/usr/local/bin/xrayr_guard.sh"
-SCRIPT_PATH="/usr/local/bin/xrayr"
+GUARD_FILE="/usr/bin/xrayr_guard.sh"   # 守护脚本放 /usr/bin，Alpine 默认存在
+SCRIPT_PATH=""                          # 全局命令路径，稍后确定
 
 #=============================
 # 安装 XrayR
@@ -37,7 +37,7 @@ install_XrayR() {
 
     echo -e "${green}XrayR 安装完成${plain}"
 
-    # 自动安装自身为全局命令
+    # 安装自身为全局命令
     install_self
 }
 
@@ -142,9 +142,12 @@ status_guard() {
 #=============================
 install_self() {
     SCRIPT_REAL_PATH=$(readlink -f "$0")
-    if [[ ! -f "$SCRIPT_REAL_PATH" ]]; then
-        echo -e "${red}无法找到当前脚本文件，生成 xrayr 命令失败${plain}"
-        return
+
+    # Alpine 默认 /usr/local/bin 可能不存在，优先使用
+    if [[ -d /usr/local/bin ]]; then
+        SCRIPT_PATH="/usr/local/bin/xrayr"
+    else
+        SCRIPT_PATH="/usr/bin/xrayr"
     fi
 
     cp "$SCRIPT_REAL_PATH" ${SCRIPT_PATH}
@@ -160,8 +163,9 @@ uninstall_XrayR() {
     stop_guard
     stop_XrayR
     rm -rf ${XRAYR_DIR}
-    rm -f ${SCRIPT_PATH} ${GUARD_FILE}
-    echo -e "${green}卸载完成，包括 XrayR 程序、守护脚本和 xrayr 命令${plain}"
+    [[ -f ${SCRIPT_PATH} ]] && rm -f ${SCRIPT_PATH}
+    [[ -f ${GUARD_FILE} ]] && rm -f ${GUARD_FILE}
+    echo -e "${green}卸载完成，包括 XrayR 程序、守护脚本和全局命令${plain}"
 }
 
 #=============================
