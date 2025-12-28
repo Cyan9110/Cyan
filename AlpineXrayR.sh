@@ -24,13 +24,13 @@ fi
 
 echo "检测架构: $arch"
 
-latest=$(curl -Ls https://api.github.com/repos/XrayR-project/XrayR/releases/latest \
+latest=$(curl -Ls https://api.github.com/repos/wyusgw/XrayR/releases/latest \
   | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
 
 echo "最新版本: $latest"
 
 wget -O $INSTALL_DIR/XrayR-linux.zip \
-  https://github.com/XrayR-project/XrayR/releases/download/$latest/XrayR-linux-$arch.zip
+  https://github.com/wyusgw/XrayR/releases/download/$latest/XrayR-linux-$arch.zip
 
 unzip -o $INSTALL_DIR/XrayR-linux.zip -d $INSTALL_DIR
 chmod +x $INSTALL_DIR/XrayR
