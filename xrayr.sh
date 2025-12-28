@@ -1,7 +1,4 @@
 #!/bin/bash
-# 文件路径：/usr/local/bin/xrayr
-# 功能：XrayR 一键管理菜单（无日志版，带守护）
-
 red='\033[0;31m'
 green='\033[0;32m'
 plain='\033[0m'
@@ -10,9 +7,10 @@ XRAYR_DIR="/etc/XrayR"
 SCREEN_SESSION="XrayR"
 ARCH="64"
 GUARD_FILE="/usr/local/bin/xrayr_guard.sh"
+SCRIPT_PATH="/usr/local/bin/xrayr"
 
 #=============================
-# 安装 XrayR（第一次用）
+# 安装 XrayR
 #=============================
 install_XrayR() {
     apk add --no-cache wget unzip screen
@@ -38,6 +36,11 @@ install_XrayR() {
     [[ ! -f geosite.dat ]] && touch geosite.dat
 
     echo -e "${green}XrayR 安装完成${plain}"
+
+    # 自动安装自身为全局命令
+    cp "$0" ${SCRIPT_PATH}
+    chmod +x ${SCRIPT_PATH}
+    echo -e "${green}命令 'xrayr' 已生成，可直接在终端输入使用${plain}"
 }
 
 #=============================
@@ -48,7 +51,7 @@ start_XrayR() {
         echo ">>> XrayR 已在运行"
         return
     fi
-    echo ">>> 启动 XrayR"
+    echo ">>> 启动 XrayR（无日志）"
     screen -dmS ${SCREEN_SESSION} bash -c "cd ${XRAYR_DIR} && ./XrayR --config config.yml"
 }
 
@@ -81,7 +84,7 @@ log_XrayR() {
 }
 
 #=============================
-# 安装守护脚本 + 开机自启
+# 安装守护脚本
 #=============================
 install_guard() {
     cat > ${GUARD_FILE} <<EOF
@@ -97,26 +100,38 @@ while true; do
 done
 EOF
     chmod +x ${GUARD_FILE}
-
-    mkdir -p /etc/local.d
-    echo "${GUARD_FILE} &" > /etc/local.d/xrayr.start
-    chmod +x /etc/local.d/xrayr.start
-    rc-update add local default
-    rc-service local start
+    echo -e "${green}守护脚本已安装（未启动）${plain}"
 }
 
+#=============================
+# 守护控制
+#=============================
 start_guard() {
+    install_guard
     if pgrep -f "${GUARD_FILE}" >/dev/null; then
         echo ">>> 守护已运行"
     else
         nohup ${GUARD_FILE} >/dev/null 2>&1 &
         echo ">>> 守护已启动"
     fi
+
+    # 开机自启
+    mkdir -p /etc/local.d
+    echo "${GUARD_FILE} &" > /etc/local.d/xrayr.start
+    chmod +x /etc/local.d/xrayr.start
+    rc-update add local default
+    rc-service local start
+    echo -e "${green}守护已设置开机自启${plain}"
 }
 
 stop_guard() {
-    pkill -f "${GUARD_FILE}"
+    pkill -f "${GUARD_FILE}" >/dev/null 2>&1
     echo ">>> 守护已停止"
+
+    # 移除开机自启
+    rm -f /etc/local.d/xrayr.start
+    rc-update del local default >/dev/null 2>&1
+    echo -e "${green}守护开机自启已移除${plain}"
 }
 
 status_guard() {
@@ -128,25 +143,38 @@ status_guard() {
 }
 
 #=============================
+# 卸载 XrayR
+#=============================
+uninstall_XrayR() {
+    echo -e "${red}正在卸载 XrayR...${plain}"
+    stop_guard
+    stop_XrayR
+    rm -rf ${XRAYR_DIR}
+    rm -f ${SCRIPT_PATH} ${GUARD_FILE}
+    echo -e "${green}卸载完成，包括 XrayR 程序、守护脚本和 xrayr 命令${plain}"
+}
+
+#=============================
 # 菜单
 #=============================
 while true; do
     echo "--------------------------------------"
-    echo "XrayR 管理菜单（命令：xrayr）"
-    echo "1. 安装 XrayR + 守护"
+    echo "XrayR 管理菜单（无日志版）"
+    echo "1. 安装 XrayR"
     echo "2. 启动 XrayR"
     echo "3. 停止 XrayR"
     echo "4. 重启 XrayR"
     echo "5. 查看 XrayR 状态"
     echo "6. 附加 screen 查看输出"
-    echo "7. 启动守护"
-    echo "8. 停止守护"
+    echo "7. 启动守护（含开机自启）"
+    echo "8. 停止守护（移除开机自启）"
     echo "9. 查看守护状态"
+    echo "10. 卸载 XrayR"
     echo "0. 退出"
     echo "--------------------------------------"
-    read -rp "请选择操作 [0-9]: " choice
+    read -rp "请选择操作 [0-10]: " choice
     case $choice in
-        1) install_XrayR; install_guard ;;
+        1) install_XrayR ;;
         2) start_XrayR ;;
         3) stop_XrayR ;;
         4) restart_XrayR ;;
@@ -155,7 +183,8 @@ while true; do
         7) start_guard ;;
         8) stop_guard ;;
         9) status_guard ;;
+        10) uninstall_XrayR ;;
         0) exit 0 ;;
-        *) echo "请输入正确数字 [0-9]" ;;
+        *) echo "请输入正确数字 [0-10]" ;;
     esac
 done
