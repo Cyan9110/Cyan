@@ -1,4 +1,7 @@
 #!/bin/bash
+# 文件路径：/usr/local/bin/xrayr
+# 功能：XrayR 一键管理菜单（无日志版，带守护）
+
 red='\033[0;31m'
 green='\033[0;32m'
 plain='\033[0m'
@@ -9,7 +12,7 @@ ARCH="64"
 GUARD_FILE="/usr/local/bin/xrayr_guard.sh"
 
 #=============================
-# 安装 XrayR
+# 安装 XrayR（第一次用）
 #=============================
 install_XrayR() {
     apk add --no-cache wget unzip screen
@@ -23,12 +26,17 @@ install_XrayR() {
     [[ -z "$LAST_VERSION" ]] && { echo -e "${red}获取最新版本失败${plain}"; exit 1; }
 
     echo -e ">>> 下载 XrayR ${LAST_VERSION}"
-    wget -c -N --no-check-certificate -O XrayR-linux.zip \
+    wget -c --no-check-certificate -O XrayR-linux.zip \
         "https://github.com/wyusgw/XrayR/releases/download/${LAST_VERSION}/XrayR-linux-${ARCH}.zip"
 
     unzip -o XrayR-linux.zip
     rm -f XrayR-linux.zip
     chmod +x XrayR
+
+    [[ ! -f config.yml ]] && touch config.yml
+    [[ ! -f geoip.dat ]] && touch geoip.dat
+    [[ ! -f geosite.dat ]] && touch geosite.dat
+
     echo -e "${green}XrayR 安装完成${plain}"
 }
 
@@ -40,7 +48,7 @@ start_XrayR() {
         echo ">>> XrayR 已在运行"
         return
     fi
-    echo ">>> 启动 XrayR（无日志）"
+    echo ">>> 启动 XrayR"
     screen -dmS ${SCREEN_SESSION} bash -c "cd ${XRAYR_DIR} && ./XrayR --config config.yml"
 }
 
@@ -73,7 +81,7 @@ log_XrayR() {
 }
 
 #=============================
-# 安装守护脚本
+# 安装守护脚本 + 开机自启
 #=============================
 install_guard() {
     cat > ${GUARD_FILE} <<EOF
@@ -90,19 +98,13 @@ done
 EOF
     chmod +x ${GUARD_FILE}
 
-    # 开机自启
     mkdir -p /etc/local.d
     echo "${GUARD_FILE} &" > /etc/local.d/xrayr.start
     chmod +x /etc/local.d/xrayr.start
     rc-update add local default
     rc-service local start
-
-    echo -e "${green}守护脚本已安装并设置开机自启${plain}"
 }
 
-#=============================
-# 守护控制
-#=============================
 start_guard() {
     if pgrep -f "${GUARD_FILE}" >/dev/null; then
         echo ">>> 守护已运行"
@@ -130,7 +132,7 @@ status_guard() {
 #=============================
 while true; do
     echo "--------------------------------------"
-    echo "XrayR 管理菜单（无日志版）"
+    echo "XrayR 管理菜单（命令：xrayr）"
     echo "1. 安装 XrayR + 守护"
     echo "2. 启动 XrayR"
     echo "3. 停止 XrayR"
