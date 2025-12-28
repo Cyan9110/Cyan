@@ -23,7 +23,7 @@ install_XrayR() {
     [[ -z "$LAST_VERSION" ]] && { echo -e "${red}获取最新版本失败${plain}"; exit 1; }
 
     echo -e ">>> 下载 XrayR ${LAST_VERSION}"
-    wget -q -N --no-check-certificate -O XrayR-linux.zip \
+    wget -c -N --no-check-certificate -O XrayR-linux.zip \
         "https://github.com/wyusgw/XrayR/releases/download/${LAST_VERSION}/XrayR-linux-${ARCH}.zip"
 
     unzip -o XrayR-linux.zip
