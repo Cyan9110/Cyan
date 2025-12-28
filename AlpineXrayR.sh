@@ -15,11 +15,11 @@ mkdir -p $INSTALL_DIR
 
 arch=$(arch)
 if [ "$arch" = "x86_64" ]; then
-    arch="amd64"
+    arch="64"
 elif [ "$arch" = "aarch64" ]; then
-    arch="arm64"
+    arch="64"
 else
-    arch="amd64"
+    arch="64"
 fi
 
 echo "检测架构: $arch"
