@@ -17,7 +17,7 @@ install_XrayR() {
 
     [[ -d ${XRAYR_DIR} ]] && rm -rf ${XRAYR_DIR}
     mkdir -p ${XRAYR_DIR}
-    cd ${XRAYR_DIR}
+    cd ${XRAYR_DIR} || exit
 
     LAST_VERSION=$(curl -Ls "https://api.github.com/repos/wyusgw/XrayR/releases/latest" \
                    | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
@@ -38,9 +38,7 @@ install_XrayR() {
     echo -e "${green}XrayR 安装完成${plain}"
 
     # 自动安装自身为全局命令
-    cp "$0" ${SCRIPT_PATH}
-    chmod +x ${SCRIPT_PATH}
-    echo -e "${green}命令 'xrayr' 已生成，可直接在终端输入使用${plain}"
+    install_self
 }
 
 #=============================
@@ -103,9 +101,6 @@ EOF
     echo -e "${green}守护脚本已安装（未启动）${plain}"
 }
 
-#=============================
-# 守护控制
-#=============================
 start_guard() {
     install_guard
     if pgrep -f "${GUARD_FILE}" >/dev/null; then
@@ -140,6 +135,21 @@ status_guard() {
     else
         echo -e "${red}守护未运行${plain}"
     fi
+}
+
+#=============================
+# 安装自身为全局命令
+#=============================
+install_self() {
+    SCRIPT_REAL_PATH=$(readlink -f "$0")
+    if [[ ! -f "$SCRIPT_REAL_PATH" ]]; then
+        echo -e "${red}无法找到当前脚本文件，生成 xrayr 命令失败${plain}"
+        return
+    fi
+
+    cp "$SCRIPT_REAL_PATH" ${SCRIPT_PATH}
+    chmod +x ${SCRIPT_PATH}
+    echo -e "${green}命令 'xrayr' 已生成，可直接在终端输入使用${plain}"
 }
 
 #=============================
