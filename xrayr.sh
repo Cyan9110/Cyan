@@ -141,17 +141,8 @@ status_guard() {
 # 安装自身为全局命令
 #=============================
 install_self() {
-    SCRIPT_REAL_PATH=$(readlink -f "$0")
-
-    # Alpine 默认 /usr/local/bin 可能不存在，优先使用
-    if [[ -d /usr/local/bin ]]; then
-        SCRIPT_PATH="/usr/local/bin/xrayr"
-    else
-        SCRIPT_PATH="/usr/bin/xrayr"
-    fi
-
-    cp "$SCRIPT_REAL_PATH" ${SCRIPT_PATH}
-    chmod +x ${SCRIPT_PATH}
+    curl -o /usr/bin/xrayr -Ls https://raw.githubusercontent.com/Cyan9110/Cyan/refs/heads/main/xrayr.sh
+    chmod +x /usr/bin/xrayr
     echo -e "${green}命令 'xrayr' 已生成，可直接在终端输入使用${plain}"
 }
 
