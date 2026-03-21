@@ -6,14 +6,22 @@ plain='\033[0m'
 XRAYR_DIR="/etc/XrayR"
 SCREEN_SESSION="XrayR"
 ARCH="64"
-GUARD_FILE="/usr/bin/xrayr_guard.sh"   # 守护脚本放 /usr/bin，Alpine 默认存在
-SCRIPT_PATH=""                          # 全局命令路径，稍后确定
+GUARD_FILE="/usr/bin/xrayr_guard.sh"
+SCRIPT_PATH=""
+
+#=============================
+# 清理 screen 残留（核心优化）
+#=============================
+clean_screen() {
+    screen -wipe >/dev/null 2>&1
+    find /root/.screen -type s -name "*.${SCREEN_SESSION}" -exec rm -f {} \; 2>/dev/null
+}
 
 #=============================
 # 安装 XrayR
 #=============================
 install_XrayR() {
-    apk add --no-cache wget unzip screen
+    apk add --no-cache wget unzip screen curl
 
     [[ -d ${XRAYR_DIR} ]] && rm -rf ${XRAYR_DIR}
     mkdir -p ${XRAYR_DIR}
@@ -37,7 +45,6 @@ install_XrayR() {
 
     echo -e "${green}XrayR 安装完成${plain}"
 
-    # 安装自身为全局命令
     install_self
 }
 
@@ -45,10 +52,13 @@ install_XrayR() {
 # 启动 / 停止 / 重启 XrayR
 #=============================
 start_XrayR() {
+    clean_screen
+
     if screen -list | grep -q "${SCREEN_SESSION}"; then
         echo ">>> XrayR 已在运行"
         return
     fi
+
     echo ">>> 启动 XrayR（无日志）"
     screen -dmS ${SCREEN_SESSION} bash -c "cd ${XRAYR_DIR} && ./XrayR --config config.yml"
 }
@@ -57,6 +67,8 @@ stop_XrayR() {
     if screen -list | grep -q "${SCREEN_SESSION}"; then
         echo ">>> 停止 XrayR"
         screen -S ${SCREEN_SESSION} -X quit
+        sleep 1
+        clean_screen
     else
         echo ">>> XrayR 未运行"
     fi
@@ -65,6 +77,7 @@ stop_XrayR() {
 restart_XrayR() {
     stop_XrayR
     sleep 1
+    clean_screen
     start_XrayR
 }
 
@@ -90,19 +103,27 @@ install_guard() {
 XRAYR_DIR="${XRAYR_DIR}"
 SCREEN_SESSION="${SCREEN_SESSION}"
 
+clean_screen() {
+    screen -wipe >/dev/null 2>&1
+    find /root/.screen -type s -name "*.\${SCREEN_SESSION}" -exec rm -f {} \; 2>/dev/null
+}
+
 while true; do
     if ! screen -list | grep -q "\${SCREEN_SESSION}"; then
+        clean_screen
         screen -dmS \${SCREEN_SESSION} bash -c "cd \${XRAYR_DIR} && ./XrayR --config config.yml"
     fi
     sleep 10
 done
 EOF
+
     chmod +x ${GUARD_FILE}
     echo -e "${green}守护脚本已安装（未启动）${plain}"
 }
 
 start_guard() {
     install_guard
+
     if pgrep -f "${GUARD_FILE}" >/dev/null; then
         echo ">>> 守护已运行"
     else
@@ -110,12 +131,12 @@ start_guard() {
         echo ">>> 守护已启动"
     fi
 
-    # 开机自启
     mkdir -p /etc/local.d
     echo "${GUARD_FILE} &" > /etc/local.d/xrayr.start
     chmod +x /etc/local.d/xrayr.start
-    rc-update add local default
-    rc-service local start
+    rc-update add local default >/dev/null 2>&1
+    rc-service local start >/dev/null 2>&1
+
     echo -e "${green}守护已设置开机自启${plain}"
 }
 
@@ -123,9 +144,9 @@ stop_guard() {
     pkill -f "${GUARD_FILE}" >/dev/null 2>&1
     echo ">>> 守护已停止"
 
-    # 移除开机自启
     rm -f /etc/local.d/xrayr.start
     rc-update del local default >/dev/null 2>&1
+
     echo -e "${green}守护开机自启已移除${plain}"
 }
 
@@ -143,20 +164,21 @@ status_guard() {
 install_self() {
     curl -o /usr/bin/xrayr -Ls https://raw.githubusercontent.com/Cyan9110/Cyan/refs/heads/main/xrayr.sh
     chmod +x /usr/bin/xrayr
-    echo -e "${green}命令 'xrayr' 已生成，可直接在终端输入使用${plain}"
+    echo -e "${green}命令 'xrayr' 已生成${plain}"
 }
 
 #=============================
-# 卸载 XrayR
+# 卸载
 #=============================
 uninstall_XrayR() {
     echo -e "${red}正在卸载 XrayR...${plain}"
     stop_guard
     stop_XrayR
+    clean_screen
     rm -rf ${XRAYR_DIR}
     [[ -f ${SCRIPT_PATH} ]] && rm -f ${SCRIPT_PATH}
     [[ -f ${GUARD_FILE} ]] && rm -f ${GUARD_FILE}
-    echo -e "${green}卸载完成，包括 XrayR 程序、守护脚本和全局命令${plain}"
+    echo -e "${green}卸载完成${plain}"
 }
 
 #=============================
@@ -164,7 +186,7 @@ uninstall_XrayR() {
 #=============================
 while true; do
     echo "--------------------------------------"
-    echo "XrayR 管理菜单（无日志版）"
+    echo "XrayR 管理菜单（稳定优化版）"
     echo "1. 安装 XrayR"
     echo "2. 启动 XrayR"
     echo "3. 停止 XrayR"
@@ -178,6 +200,7 @@ while true; do
     echo "0. 退出"
     echo "--------------------------------------"
     read -rp "请选择操作 [0-10]: " choice
+
     case $choice in
         1) install_XrayR ;;
         2) start_XrayR ;;
