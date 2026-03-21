@@ -90,8 +90,18 @@ status_XrayR() {
 }
 
 log_XrayR() {
-    echo -e ">>> 附加到 screen 查看 XrayR 输出（退出不会停止进程）"
-    screen -r ${SCREEN_SESSION}
+    echo -e ">>> 附加到 XrayR 输出（Ctrl+A+D 退出，不影响运行）"
+
+    clean_screen
+
+    SESSION_ID=$(screen -list | grep "\.${SCREEN_SESSION}" | awk '{print $1}' | head -n 1)
+
+    if [[ -z "$SESSION_ID" ]]; then
+        echo -e "${red}XrayR 未运行，无法查看日志${plain}"
+        return
+    fi
+
+    screen -D -r "$SESSION_ID"
 }
 
 #=============================
