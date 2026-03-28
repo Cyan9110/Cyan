@@ -232,11 +232,11 @@ while true; do
     echo "7. 查看错误日志"
     echo "8. 开启开机自启"
     echo "9. 关闭开机自启"
-    echo "10. 卸载 XrayR"
-    echo "11. 更新菜单脚本自身"
-    echo "12. 重建 OpenRC 服务文件"
+    echo "10. 更新菜单脚本自身"
+    echo "11. 重建 OpenRC 服务文件"
+    echo "12. 配置 logrotate 自动轮转日志"
     echo "13. 清理日志"
-    echo "14. 配置 logrotate 自动轮转日志"
+    echo "14. 卸载 XrayR"
     echo "0. 退出"
     echo "--------------------------------------"
     read -rp "请选择操作 [0-14]: " choice
@@ -250,11 +250,11 @@ while true; do
         7) error_log_XrayR ;;
         8) enable_autostart ;;
         9) disable_autostart ;;
-        10) uninstall_XrayR ;;
-        11) update_self ;;
-        12) rebuild_openrc_service ;;
+        10) update_self ;;
+        11) rebuild_openrc_service ;;
+        12) setup_logrotate ;;
         13) clean_logs ;;
-        14) setup_logrotate ;;
+        14) uninstall_XrayR ;;
         0) exit 0 ;;
         *) echo "请输入正确数字 [0-14]" ;;
     esac
