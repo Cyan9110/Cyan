@@ -1,20 +1,36 @@
 #!/bin/bash
+
 red='\033[0;31m'
 green='\033[0;32m'
+yellow='\033[0;33m'
 plain='\033[0m'
 
 XRAYR_DIR="/etc/XrayR"
 SCREEN_SESSION="XrayR"
 ARCH="64"
 GUARD_FILE="/usr/bin/xrayr_guard.sh"
-SCRIPT_PATH=""
+SCRIPT_PATH="/usr/bin/xrayr"
 
 #=============================
-# 清理 screen 残留（核心优化）
+# 清理 screen 残留
 #=============================
 clean_screen() {
     screen -wipe >/dev/null 2>&1
     find /root/.screen -type s -name "*.${SCREEN_SESSION}" -exec rm -f {} \; 2>/dev/null
+}
+
+#=============================
+# 检测 XrayR 是否运行
+#=============================
+is_xrayr_running() {
+    pgrep -f "${XRAYR_DIR}/XrayR --config config.yml" >/dev/null
+}
+
+#=============================
+# 检测 screen 是否存在
+#=============================
+screen_exists() {
+    screen -list | grep -q "${SCREEN_SESSION}"
 }
 
 #=============================
@@ -23,13 +39,17 @@ clean_screen() {
 install_XrayR() {
     apk add --no-cache wget unzip screen curl
 
-    [[ -d ${XRAYR_DIR} ]] && rm -rf ${XRAYR_DIR}
-    mkdir -p ${XRAYR_DIR}
-    cd ${XRAYR_DIR} || exit
+    [[ -d ${XRAYR_DIR} ]] && rm -rf "${XRAYR_DIR}"
+    mkdir -p "${XRAYR_DIR}"
+    cd "${XRAYR_DIR}" || exit 1
 
     LAST_VERSION=$(curl -Ls "https://api.github.com/repos/wyusgw/XrayR/releases/latest" \
-                   | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-    [[ -z "$LAST_VERSION" ]] && { echo -e "${red}获取最新版本失败${plain}"; exit 1; }
+        | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+
+    [[ -z "$LAST_VERSION" ]] && {
+        echo -e "${red}获取最新版本失败${plain}"
+        exit 1
+    }
 
     echo -e ">>> 下载 XrayR ${LAST_VERSION}"
     wget -c --no-check-certificate -O XrayR-linux.zip \
@@ -44,74 +64,98 @@ install_XrayR() {
     [[ ! -f geosite.dat ]] && touch geosite.dat
 
     echo -e "${green}XrayR 安装完成${plain}"
-
     install_self
 }
 
 #=============================
-# 启动 / 停止 / 重启 XrayR
+# 启动
 #=============================
 start_XrayR() {
     clean_screen
 
-    if screen -list | grep -q "${SCREEN_SESSION}"; then
+    if is_xrayr_running; then
         echo ">>> XrayR 已在运行"
         return
     fi
 
-    echo ">>> 启动 XrayR（无日志）"
-    screen -dmS ${SCREEN_SESSION} bash -c "cd ${XRAYR_DIR} && ./XrayR --config config.yml"
+    echo ">>> 启动 XrayR"
+    screen -dmS "${SCREEN_SESSION}" bash -c "cd ${XRAYR_DIR} && exec ./XrayR --config config.yml"
 }
 
+#=============================
+# 停止
+#=============================
 stop_XrayR() {
-    if screen -list | grep -q "${SCREEN_SESSION}"; then
+    if is_xrayr_running; then
         echo ">>> 停止 XrayR"
-        screen -S ${SCREEN_SESSION} -X quit
+        pkill -f "${XRAYR_DIR}/XrayR --config config.yml"
         sleep 1
-        clean_screen
     else
         echo ">>> XrayR 未运行"
     fi
+
+    clean_screen
 }
 
+#=============================
+# 重启
+#=============================
 restart_XrayR() {
     stop_XrayR
     sleep 1
-    clean_screen
     start_XrayR
 }
 
+#=============================
+# 状态
+#=============================
 status_XrayR() {
-    if screen -list | grep -q "${SCREEN_SESSION}"; then
+    if is_xrayr_running; then
         echo -e "${green}XrayR 正在运行${plain}"
     else
+        clean_screen
         echo -e "${red}XrayR 未运行${plain}"
     fi
 }
 
+#=============================
+# 查看输出
+#=============================
 log_XrayR() {
-    echo -e ">>> 附加到 XrayR 输出（Ctrl+A+D 退出，不影响运行）"
-
-    clean_screen
-
-    SESSION_ID=$(screen -list | grep "\.${SCREEN_SESSION}" | awk '{print $1}' | head -n 1)
-
-    if [[ -z "$SESSION_ID" ]]; then
+    if ! is_xrayr_running; then
+        clean_screen
         echo -e "${red}XrayR 未运行，无法查看日志${plain}"
         return
     fi
 
-    screen -D -r "$SESSION_ID"
+    clean_screen
+
+    if ! screen_exists; then
+        echo -e "${yellow}检测到 screen 丢失，正在自动恢复...${plain}"
+        screen -dmS "${SCREEN_SESSION}" bash -c "tail -f /dev/null"
+        sleep 1
+    fi
+
+    echo -e "${green}>>> 附加到 XrayR 输出（Ctrl+A+D 退出，不影响运行）${plain}"
+    screen -D -r "${SCREEN_SESSION}"
 }
 
 #=============================
-# 安装守护脚本
+# 安装守护（修复版）
 #=============================
 install_guard() {
-    cat > ${GUARD_FILE} <<EOF
+    cat > "${GUARD_FILE}" <<EOF
 #!/bin/bash
 XRAYR_DIR="${XRAYR_DIR}"
 SCREEN_SESSION="${SCREEN_SESSION}"
+
+is_xrayr_running() {
+    pgrep -f "\${XRAYR_DIR}/XrayR --config config.yml" >/dev/null
+}
+
+screen_exists() {
+    screen -list | grep -q "\${SCREEN_SESSION}"
+}
 
 clean_screen() {
     screen -wipe >/dev/null 2>&1
@@ -119,25 +163,35 @@ clean_screen() {
 }
 
 while true; do
-    if ! screen -list | grep -q "\${SCREEN_SESSION}"; then
-        clean_screen
-        screen -dmS \${SCREEN_SESSION} bash -c "cd \${XRAYR_DIR} && ./XrayR --config config.yml"
+    clean_screen
+
+    if ! is_xrayr_running; then
+        # 进程不存在 → 拉起主程序
+        screen -dmS "\${SCREEN_SESSION}" bash -c "cd \${XRAYR_DIR} && exec ./XrayR --config config.yml"
+
+    elif ! screen_exists; then
+        # 进程存在但 screen 丢失 → 补一个日志代理
+        screen -dmS "\${SCREEN_SESSION}" bash -c "tail -f /dev/null"
     fi
+
     sleep 10
 done
 EOF
 
-    chmod +x ${GUARD_FILE}
-    echo -e "${green}守护脚本已安装（未启动）${plain}"
+    chmod +x "${GUARD_FILE}"
+    echo -e "${green}守护脚本已安装（已修复 screen 自动恢复）${plain}"
 }
 
+#=============================
+# 启动守护
+#=============================
 start_guard() {
     install_guard
 
     if pgrep -f "${GUARD_FILE}" >/dev/null; then
         echo ">>> 守护已运行"
     else
-        nohup ${GUARD_FILE} >/dev/null 2>&1 &
+        nohup "${GUARD_FILE}" >/dev/null 2>&1 &
         echo ">>> 守护已启动"
     fi
 
@@ -150,6 +204,9 @@ start_guard() {
     echo -e "${green}守护已设置开机自启${plain}"
 }
 
+#=============================
+# 停止守护
+#=============================
 stop_guard() {
     pkill -f "${GUARD_FILE}" >/dev/null 2>&1
     echo ">>> 守护已停止"
@@ -160,6 +217,9 @@ stop_guard() {
     echo -e "${green}守护开机自启已移除${plain}"
 }
 
+#=============================
+# 守护状态
+#=============================
 status_guard() {
     if pgrep -f "${GUARD_FILE}" >/dev/null; then
         echo -e "${green}守护正在运行${plain}"
@@ -169,12 +229,12 @@ status_guard() {
 }
 
 #=============================
-# 安装自身为全局命令
+# 安装全局命令
 #=============================
 install_self() {
     curl -o /usr/bin/xrayr -Ls https://raw.githubusercontent.com/Cyan9110/Cyan/refs/heads/main/xrayr.sh
     chmod +x /usr/bin/xrayr
-    echo -e "${green}命令 'xrayr' 已生成${plain}"
+    echo -e "${green}命令 xrayr 已生成${plain}"
 }
 
 #=============================
@@ -185,9 +245,9 @@ uninstall_XrayR() {
     stop_guard
     stop_XrayR
     clean_screen
-    rm -rf ${XRAYR_DIR}
-    [[ -f ${SCRIPT_PATH} ]] && rm -f ${SCRIPT_PATH}
-    [[ -f ${GUARD_FILE} ]] && rm -f ${GUARD_FILE}
+    rm -rf "${XRAYR_DIR}"
+    rm -f "${GUARD_FILE}"
+    rm -f "${SCRIPT_PATH}"
     echo -e "${green}卸载完成${plain}"
 }
 
@@ -196,7 +256,7 @@ uninstall_XrayR() {
 #=============================
 while true; do
     echo "--------------------------------------"
-    echo "XrayR 管理菜单（稳定优化版）"
+    echo "XrayR 管理菜单（守护修复版）"
     echo "1. 安装 XrayR"
     echo "2. 启动 XrayR"
     echo "3. 停止 XrayR"
