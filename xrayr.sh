@@ -144,11 +144,17 @@ disable_autostart() {
 # 日志查看
 #=============================
 log_XrayR() {
-    tail -f /var/log/xrayr.log
+    logfile="/var/log/xrayr.log"
+    [[ ! -f "$logfile" ]] && touch "$logfile"
+    echo -e ">>> 正在查看 XrayR 运行日志（Ctrl+C 退出）"
+    tail -f "$logfile"
 }
 
 error_log_XrayR() {
-    tail -f /var/log/xrayr-error.log
+    errorfile="/var/log/xrayr-error.log"
+    [[ ! -f "$errorfile" ]] && touch "$errorfile"
+    echo -e ">>> 正在查看 XrayR 错误日志（Ctrl+C 退出）"
+    tail -f "$errorfile"
 }
 
 #=============================
