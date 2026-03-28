@@ -45,8 +45,13 @@ install_XrayR() {
 
     echo -e "${green}XrayR 安装完成${plain}"
     install_self
+    rebuild_openrc_service
+}
 
-    # 创建 OpenRC 服务文件
+#=============================
+# 重建 OpenRC 服务文件
+#=============================
+rebuild_openrc_service() {
     cat > /etc/init.d/xrayr <<EOF
 #!/sbin/openrc-run
 
@@ -58,7 +63,7 @@ name="XrayR"
 EOF
     chmod +x /etc/init.d/xrayr
     rc-update add xrayr default >/dev/null 2>&1
-    echo -e "${green}XrayR OpenRC 服务已创建并设置开机自启${plain}"
+    echo -e "${green}OpenRC 服务文件已创建/重建并设置开机自启${plain}"
 }
 
 #=============================
@@ -188,9 +193,10 @@ while true; do
     echo "9. 关闭开机自启"
     echo "10. 卸载 XrayR"
     echo "11. 更新菜单脚本自身"
+    echo "12. 重建 OpenRC 服务文件"
     echo "0. 退出"
     echo "--------------------------------------"
-    read -rp "请选择操作 [0-11]: " choice
+    read -rp "请选择操作 [0-12]: " choice
     case $choice in
         1) install_XrayR ;;
         2) start_XrayR ;;
@@ -203,8 +209,9 @@ while true; do
         9) disable_autostart ;;
         10) uninstall_XrayR ;;
         11) update_self ;;
+        12) rebuild_openrc_service ;;
         0) exit 0 ;;
-        *) echo "请输入正确数字 [0-11]" ;;
+        *) echo "请输入正确数字 [0-12]" ;;
     esac
     echo
     sleep 1
