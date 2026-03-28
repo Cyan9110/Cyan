@@ -7,6 +7,8 @@ plain='\033[0m'
 
 XRAYR_DIR="/etc/XrayR"
 SCRIPT_PATH="/usr/bin/xrayr"
+LOG_FILE="/var/log/xrayr.log"
+ERROR_LOG_FILE="/var/log/xrayr-error.log"
 
 #=============================
 # 安装自身为全局命令
@@ -18,9 +20,54 @@ install_self() {
 }
 
 #=============================
-# 安装 XrayR
+# 日志轮转与权限
+#=============================
+rotate_log() {
+    for logfile in "$LOG_FILE" "$ERROR_LOG_FILE"; do
+        [[ ! -f "$logfile" ]] && touch "$logfile"
+        chown root:root "$logfile"
+        chmod 644 "$logfile"
+        maxsize=$((20*1024*1024))
+        filesize=$(stat -c%s "$logfile" 2>/dev/null || echo 0)
+        if (( filesize > maxsize )); then
+            mv "$logfile" "${logfile}.1"
+            touch "$logfile"
+        fi
+    done
+}
+
+setup_logrotate() {
+    apk add --no-cache logrotate >/dev/null 2>&1
+    cat > /etc/logrotate.d/xrayr <<EOF
+$LOG_FILE $ERROR_LOG_FILE {
+    daily
+    rotate 7
+    size 20M
+    compress
+    missingok
+    notifempty
+    copytruncate
+}
+EOF
+    echo -e "${green}logrotate 已配置，日志自动轮转已启用${plain}"
+}
+
+clean_logs() {
+    rm -f "$LOG_FILE" "$ERROR_LOG_FILE"
+    touch "$LOG_FILE" "$ERROR_LOG_FILE"
+    echo -e "${green}日志已清理${plain}"
+}
+
+#=============================
+# 安装 XrayR（仅当不存在）
 #=============================
 install_XrayR() {
+    if [[ -f "${XRAYR_DIR}/XrayR" ]]; then
+        echo -e "${yellow}检测到已有 XrayR 文件，跳过下载安装${plain}"
+        rebuild_openrc_service
+        return
+    fi
+
     apk add --no-cache wget unzip openrc
 
     [[ -d ${XRAYR_DIR} ]] && rm -rf ${XRAYR_DIR}
@@ -49,21 +96,32 @@ install_XrayR() {
 }
 
 #=============================
-# 重建 OpenRC 服务文件
+# 重建 OpenRC 服务文件（带日志重定向）
 #=============================
 rebuild_openrc_service() {
+    mkdir -p /var/log
+    touch "$LOG_FILE" "$ERROR_LOG_FILE"
+    chown root:root "$LOG_FILE" "$ERROR_LOG_FILE"
+    chmod 644 "$LOG_FILE" "$ERROR_LOG_FILE"
+
     cat > /etc/init.d/xrayr <<EOF
 #!/sbin/openrc-run
 
+name="XrayR"
 command="${XRAYR_DIR}/XrayR"
 command_args="--config ${XRAYR_DIR}/config.yml"
+
 command_background="yes"
 pidfile="/run/xrayr.pid"
-name="XrayR"
+
+output_log="${LOG_FILE}"
+error_log="${ERROR_LOG_FILE}"
 EOF
+
     chmod +x /etc/init.d/xrayr
     rc-update add xrayr default >/dev/null 2>&1
-    echo -e "${green}OpenRC 服务文件已创建/重建并设置开机自启${plain}"
+
+    echo -e "${green}OpenRC 服务文件已重建（标准日志版）${plain}"
 }
 
 #=============================
@@ -78,7 +136,7 @@ get_service_status() {
 }
 
 get_autostart_status() {
-    if rc-update show 2>/dev/null | grep -Eq "\bxrayr\b.*default"; then
+    if rc-update show 2>/dev/null | grep -Eq "\\bxrayr\\b.*default"; then
         echo -e "${green}已开启${plain}"
     else
         echo -e "${red}未开启${plain}"
@@ -89,28 +147,17 @@ get_autostart_status() {
 # 启动 / 停止 / 重启 / 状态
 #=============================
 start_XrayR() {
-    if rc-service xrayr status 2>/dev/null | grep -q "started"; then
-        echo -e "${yellow}XrayR 已在运行，无需重复启动${plain}"
-    else
-        rc-service xrayr start
-    fi
+    rotate_log
+    rc-service xrayr start
 }
 
 stop_XrayR() {
-    if rc-service xrayr status 2>/dev/null | grep -q "started"; then
-        rc-service xrayr stop
-    else
-        echo -e "${yellow}XrayR 当前未运行，无需停止${plain}"
-    fi
+    rc-service xrayr stop
 }
 
 restart_XrayR() {
-    if rc-service xrayr status 2>/dev/null | grep -q "started"; then
-        rc-service xrayr restart
-    else
-        echo -e "${yellow}XrayR 未运行，正在直接启动${plain}"
-        rc-service xrayr start
-    fi
+    rotate_log
+    rc-service xrayr restart
 }
 
 status_XrayR() {
@@ -121,40 +168,28 @@ status_XrayR() {
 # 开机自启管理
 #=============================
 enable_autostart() {
-    if rc-update show 2>/dev/null | grep -Eq "\bxrayr\b.*default"; then
-        echo -e "${yellow}XrayR 已经设置过开机自启，无需重复添加${plain}"
-    else
-        rc-update add xrayr default >/dev/null 2>&1
-        rc-status >/dev/null 2>&1
-        echo -e "${green}已成功设置开机自启${plain}"
-    fi
+    rc-update add xrayr default >/dev/null 2>&1
+    echo -e "${green}已成功设置开机自启${plain}"
 }
 
 disable_autostart() {
-    if rc-update show 2>/dev/null | grep -Eq "\bxrayr\b.*default"; then
-        rc-update del xrayr default >/dev/null 2>&1
-        rc-status >/dev/null 2>&1
-        echo -e "${green}已取消开机自启${plain}"
-    else
-        echo -e "${yellow}当前未设置开机自启${plain}"
-    fi
+    rc-update del xrayr default >/dev/null 2>&1
+    echo -e "${green}已取消开机自启${plain}"
 }
 
 #=============================
 # 日志查看
 #=============================
 log_XrayR() {
-    logfile="/var/log/xrayr.log"
-    [[ ! -f "$logfile" ]] && touch "$logfile"
+    [[ ! -f "$LOG_FILE" ]] && touch "$LOG_FILE"
     echo -e ">>> 正在查看 XrayR 运行日志（Ctrl+C 退出）"
-    tail -f "$logfile"
+    tail -f "$LOG_FILE"
 }
 
 error_log_XrayR() {
-    errorfile="/var/log/xrayr-error.log"
-    [[ ! -f "$errorfile" ]] && touch "$errorfile"
+    [[ ! -f "$ERROR_LOG_FILE" ]] && touch "$ERROR_LOG_FILE"
     echo -e ">>> 正在查看 XrayR 错误日志（Ctrl+C 退出）"
-    tail -f "$errorfile"
+    tail -f "$ERROR_LOG_FILE"
 }
 
 #=============================
@@ -184,7 +219,7 @@ while true; do
     autostart_status=$(get_autostart_status)
 
     echo "--------------------------------------"
-    echo "XrayR 管理菜单（OpenRC 智能版）"
+    echo "XrayR 管理菜单（OpenRC 智能版 + 日志保护 20MB）"
     echo -e "服务状态：${service_status}"
     echo -e "开机自启：${autostart_status}"
     echo "--------------------------------------"
@@ -200,9 +235,11 @@ while true; do
     echo "10. 卸载 XrayR"
     echo "11. 更新菜单脚本自身"
     echo "12. 重建 OpenRC 服务文件"
+    echo "13. 清理日志"
+    echo "14. 配置 logrotate 自动轮转日志"
     echo "0. 退出"
     echo "--------------------------------------"
-    read -rp "请选择操作 [0-12]: " choice
+    read -rp "请选择操作 [0-14]: " choice
     case $choice in
         1) install_XrayR ;;
         2) start_XrayR ;;
@@ -216,8 +253,10 @@ while true; do
         10) uninstall_XrayR ;;
         11) update_self ;;
         12) rebuild_openrc_service ;;
+        13) clean_logs ;;
+        14) setup_logrotate ;;
         0) exit 0 ;;
-        *) echo "请输入正确数字 [0-12]" ;;
+        *) echo "请输入正确数字 [0-14]" ;;
     esac
     echo
     sleep 1
