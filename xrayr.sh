@@ -16,21 +16,16 @@ SCRIPT_PATH="/usr/bin/xrayr"
 #=============================
 clean_screen() {
     screen -wipe >/dev/null 2>&1
+
+    # 删除所有 dead / orphan 的 XrayR socket
     find /root/.screen -type s -name "*.${SCREEN_SESSION}" -exec rm -f {} \; 2>/dev/null
 }
 
 #=============================
-# 检测 XrayR 是否运行
+# 检测 XrayR 是否真实运行
 #=============================
 is_xrayr_running() {
     pgrep -f "${XRAYR_DIR}/XrayR --config config.yml" >/dev/null
-}
-
-#=============================
-# 检测 screen 是否存在
-#=============================
-screen_exists() {
-    screen -list | grep -q "${SCREEN_SESSION}"
 }
 
 #=============================
@@ -64,6 +59,7 @@ install_XrayR() {
     [[ ! -f geosite.dat ]] && touch geosite.dat
 
     echo -e "${green}XrayR 安装完成${plain}"
+
     install_self
 }
 
@@ -78,7 +74,7 @@ start_XrayR() {
         return
     fi
 
-    echo ">>> 启动 XrayR"
+    echo ">>> 启动 XrayR（无日志）"
     screen -dmS "${SCREEN_SESSION}" bash -c "cd ${XRAYR_DIR} && exec ./XrayR --config config.yml"
 }
 
@@ -90,11 +86,11 @@ stop_XrayR() {
         echo ">>> 停止 XrayR"
         pkill -f "${XRAYR_DIR}/XrayR --config config.yml"
         sleep 1
+        clean_screen
     else
+        clean_screen
         echo ">>> XrayR 未运行"
     fi
-
-    clean_screen
 }
 
 #=============================
@@ -103,6 +99,7 @@ stop_XrayR() {
 restart_XrayR() {
     stop_XrayR
     sleep 1
+    clean_screen
     start_XrayR
 }
 
@@ -130,10 +127,10 @@ log_XrayR() {
 
     clean_screen
 
-    if ! screen_exists; then
-        echo -e "${yellow}检测到 screen 丢失，正在自动恢复...${plain}"
-        screen -dmS "${SCREEN_SESSION}" bash -c "tail -f /dev/null"
-        sleep 1
+    if ! screen -list | grep -q "${SCREEN_SESSION}"; then
+        echo -e "${yellow}检测到 XrayR 进程存在但 screen 会话丢失${plain}"
+        echo -e "${yellow}当前无法恢复历史输出，请后续使用重启后重新接管日志${plain}"
+        return
     fi
 
     echo -e "${green}>>> 附加到 XrayR 输出（Ctrl+A+D 退出，不影响运行）${plain}"
@@ -141,7 +138,7 @@ log_XrayR() {
 }
 
 #=============================
-# 安装守护（修复版）
+# 安装守护
 #=============================
 install_guard() {
     cat > "${GUARD_FILE}" <<EOF
@@ -153,33 +150,22 @@ is_xrayr_running() {
     pgrep -f "\${XRAYR_DIR}/XrayR --config config.yml" >/dev/null
 }
 
-screen_exists() {
-    screen -list | grep -q "\${SCREEN_SESSION}"
-}
-
 clean_screen() {
     screen -wipe >/dev/null 2>&1
     find /root/.screen -type s -name "*.\${SCREEN_SESSION}" -exec rm -f {} \; 2>/dev/null
 }
 
 while true; do
-    clean_screen
-
     if ! is_xrayr_running; then
-        # 进程不存在 → 拉起主程序
+        clean_screen
         screen -dmS "\${SCREEN_SESSION}" bash -c "cd \${XRAYR_DIR} && exec ./XrayR --config config.yml"
-
-    elif ! screen_exists; then
-        # 进程存在但 screen 丢失 → 补一个日志代理
-        screen -dmS "\${SCREEN_SESSION}" bash -c "tail -f /dev/null"
     fi
-
     sleep 10
 done
 EOF
 
     chmod +x "${GUARD_FILE}"
-    echo -e "${green}守护脚本已安装（已修复 screen 自动恢复）${plain}"
+    echo -e "${green}守护脚本已安装（未启动）${plain}"
 }
 
 #=============================
@@ -256,7 +242,7 @@ uninstall_XrayR() {
 #=============================
 while true; do
     echo "--------------------------------------"
-    echo "XrayR 管理菜单（守护修复版）"
+    echo "XrayR 管理菜单（稳定修复版）"
     echo "1. 安装 XrayR"
     echo "2. 启动 XrayR"
     echo "3. 停止 XrayR"
