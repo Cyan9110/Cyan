@@ -116,12 +116,17 @@ pidfile="/run/xrayr.pid"
 
 output_log="${LOG_FILE}"
 error_log="${ERROR_LOG_FILE}"
+
+# ===== 自动守护 =====
+respawn_delay=5
+respawn_max=0
+respawn_period=0
 EOF
 
     chmod +x /etc/init.d/xrayr
     rc-update add xrayr default >/dev/null 2>&1
 
-    echo -e "${green}OpenRC 服务文件已重建（标准日志版）${plain}"
+    echo -e "${green}OpenRC 服务文件已重建（自动守护版）${plain}"
 }
 
 #=============================
