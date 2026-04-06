@@ -108,25 +108,29 @@ rebuild_openrc_service() {
 #!/sbin/openrc-run
 
 name="XrayR"
+description="XrayR Service"
+
 command="${XRAYR_DIR}/XrayR"
 command_args="--config ${XRAYR_DIR}/config.yml"
 
+# 使用 OpenRC 官方守护
+supervisor="supervise-daemon"
 command_background="yes"
-pidfile="/run/xrayr.pid"
 
+# 日志
 output_log="${LOG_FILE}"
 error_log="${ERROR_LOG_FILE}"
 
-# ===== 自动守护 =====
+# 自动守护
 respawn_delay=5
 respawn_max=0
-respawn_period=0
+respawn_period=60
 EOF
 
     chmod +x /etc/init.d/xrayr
     rc-update add xrayr default >/dev/null 2>&1
 
-    echo -e "${green}OpenRC 服务文件已重建（自动守护版）${plain}"
+    echo -e "${green}OpenRC 服务文件已重建（最终稳定版）${plain}"
 }
 
 #=============================
