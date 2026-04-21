@@ -10,8 +10,9 @@ CFRECORD_TYPE="A"
 CFTTL=120
 FORCE=false
 
-WANIPSITE="https://api.ipify.org"
+WANIPSITE="http://ipv4.icanhazip.com"
 
+# Site to retrieve WAN ip, other examples are: bot.whatismyipaddress.com, https://api.ipify.org/ ...
 # ===== 获取IP =====
 WAN_IP=$(curl -s "$WANIPSITE")
 
