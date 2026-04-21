@@ -12,7 +12,7 @@ CFKEY="cfut_wH6wSidoe1xyppx1yyOBIPud6H9vNMAEI0siKMKab392c685"
 CFZONE_NAME="vcweb.top"
 
 # 主机名（支持子域）
-CFRECORD_NAME="jp_aws_1"
+CFRECORD_NAME="jp_1"
 
 # 记录类型：A=IPv4 / AAAA=IPv6
 CFRECORD_TYPE="A"
