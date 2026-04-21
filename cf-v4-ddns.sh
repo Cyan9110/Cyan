@@ -16,7 +16,7 @@ WANIPSITE="http://ipv4.icanhazip.com"
 # ===== 获取IP =====
 WAN_IP=$(curl -s "$WANIPSITE")
 
-WAN_IP_FILE="$HOME/.cf-wan_ip_$CFRECORD_NAME.txt"
+WAN_IP_FILE="$HOME/cf-wan_ip_$CFRECORD_NAME.txt"
 
 if [ -f "$WAN_IP_FILE" ]; then
   OLD_WAN_IP=$(cat "$WAN_IP_FILE")
