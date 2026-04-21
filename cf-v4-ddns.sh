@@ -4,7 +4,7 @@ set -o pipefail
 
 # ===== 配置 =====
 CFKEY=""
-CFZONE_NAME="vcweb.top"
+CFZONE_NAME=""
 CFRECORD_NAME=""
 CFRECORD_TYPE="A"
 CFTTL=120
